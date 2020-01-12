@@ -1,27 +1,15 @@
 import '../sass/style.scss'
 
-import * from './validators/validators.js'
-
-const messages = {
-  email: 'Please enter a valid email adress',
-  isRequired: 'This field is required',
-  minLen: 'Value is too short, minimum is {{cond}} characters.',
-  maxLen: 'Value is too long, maximum is {{cond}} characters.',
-  min: 'Value is too small, minimum is {{cond}}.',
-  max: 'Value is too big, maximum is {{cond}}.',
-  quantity: 'Use digits only.',
-  number: 'Value must be set to a number',
-  int: 'Value must be an integer',
-  length: 'Value must contain {{cond}} characters',
-  eq: 'Value must match {{cond}} field'
-}
-
-const DEFAULT_ERROR_CLASS = 'has__error'
-const DEFAULT_FIELD_MESSAGE_CLASS = 'form__message'
-const DEFAULT_FIELD_CLASS = 'form__control'
-const DEFAULT_FIELD_PARENT_CLASS = 'form__group'
-const DEFAULT_DATA_ATTR = 'form-control'
-const DEFAULT_DATA_VALIDATOR = 'form-validators'
+import * as validatorsRules from './validators/validators'
+import {
+	DEFAULT_ERROR_MESSAGES,
+	DEFAULT_ERROR_CLASS,
+	DEFAULT_FIELD_MESSAGE_CLASS,
+	DEFAULT_FIELD_CLASS,
+	DEFAULT_FIELD_PARENT_CLASS,
+	DEFAULT_DATA_ATTR,
+	DEFAULT_DATA_VALIDATOR
+} from './utilities/defaultTypes'
 
 function isHTMLElement(node) {
   return node instanceof HTMLElement
@@ -131,11 +119,10 @@ function validateField(field) {
     let { value } = input
     
     if (parameter !== 'field'){
-    	console.log(parameter)
-      formHasError = !window[parameter](value.trim())
+    	console.log(parameter, validatorsRules[parameter].length)
+      formHasError = !validatorsRules[parameter](value.trim())
       if (formHasError) {
-        console.log('formHasError', messages[parameter], field[parameter])
-        showErrorMsg(input, replaceInString(messages[parameter], field[parameter]))
+        showErrorMsg(input, replaceInString(DEFAULT_ERROR_MESSAGES[parameter], field[parameter]))
       }
     }
   })

@@ -1,17 +1,4 @@
-const regexps = {
-  nameRegExp: /\d/, /* /^[a-zA-Z]{2,20}$/ */
-  emailRegexp: /^[a-zA-Z0-9._+-]+@[a-z0-9-]{1,67}\.[a-zA-Z]{2,67}$/,
-  phoneRegexp: /^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/,
-  ibanRegexp: /^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/,
-  bicRegexp: /([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)/,
-  stringRegexp: /^\s+|<|>|"|\$|&|\/|'|\*|#|@|\\|\.\.|\./,
-  urlRegexp: /^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|COM|ORG|NET|MIL|EDU|fr|Fr|it|eng|ca)$/,
-  // password 6 to 12 char, special char, lowercase & uppercase, numbers 
-  passwordRegexp:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%_*?&])[A-Za-z\d$@$_!%*?&]{6,12}/, /* /(?=^.{8,12}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/*/
-  msgRegexp: /^\s+$/,
-  numRegexp: /^[0-9]+$/,
-  siretRegex: /^[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{5}$/,
-}
+import { DEFAULT_REGEXP } from '../utilities/defaultTypes'
 
 //https://stackoverflow.com/questions/4234589/validation-of-file-extension-before-uploading-file
 export function fileHasExtension(value, extension) {
@@ -57,7 +44,7 @@ export function maxLen(value, maxLength) {
   return value.length > maxLength
 }
 
-export function isNumeric(value, regExp = regexps.numRegexp) {
+export function isNumeric(value, regExp = DEFAULT_REGEXP.numRegexp) {
   return regExp.test(value)
 }
 
@@ -69,27 +56,27 @@ export function isEqual(value, baseValue) {
   return value === baseValue
 }
 
-export function isEmail(value, regExp = regexps.emailRegexp) {
+export function isEmail(value, regExp = DEFAULT_REGEXP.emailRegexp) {
   return regExp.test(value)
 }
 
-export function isPassword(value, regExp = regexps.passwordRegexp) {
-  return (value.length > 0 && regExp.test(value)
+export function isPassword(value, regExp = DEFAULT_REGEXP.passwordRegexp) {
+  return (value.length > 0 && regExp.test(value))
 }
 
-export function isPhone(value, regExp = regexps.phoneRegexp) {
+export function isPhone(value, regExp = DEFAULT_REGEXP.phoneRegexp) {
   return regExp.test(value)
 }
 
-export function isIban(value, regExp = regexps.ibanRegexp) {
+export function isIban(value, regExp = DEFAULT_REGEXP.ibanRegexp) {
   return regExp.test(value)
 }
 
-export function isBic(value, regExp = regexps.bicRegexp) {
+export function isBic(value, regExp = DEFAULT_REGEXP.bicRegexp) {
   return regExp.test(value)
 }
 
-export function isUrl(value, regExp = regexps.urlRegexp) {
+export function isUrl(value, regExp = DEFAULT_REGEXP.urlRegexp) {
   return regExp.test(value)
 }
 
@@ -98,11 +85,10 @@ export function isChecked(field) {
 }
 
 export function radioIsChecked(array) {
-    for(let i = 0; i < array.length; i += 1) {
-      if (isChecked(array[i])) {
-        return true
-      }
+  for (let i = 0; i < array.length; i += 1) {
+    if (isChecked(array[i])) {
+      return true
     }
-    return false
   }
+  return false
 }
