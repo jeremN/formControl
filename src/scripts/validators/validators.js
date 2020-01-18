@@ -29,6 +29,7 @@ export function isSiret(value) {
 }
 
 export function isRequired(value) {
+  if (value == (null || undefined)) return false
   return value.length > 0
 }
 
@@ -37,11 +38,11 @@ export function isLen(value, len) {
 }
 
 export function minLen(value, minLength) {
-  return value.length < minLength
+  return value.length >= minLength
 }
 
 export function maxLen(value, maxLength) {
-  return value.length > maxLength
+  return value.length <= maxLength
 }
 
 export function isNumeric(value, regExp = DEFAULT_REGEXP.numRegexp) {
