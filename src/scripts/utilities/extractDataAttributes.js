@@ -5,9 +5,10 @@ function splitUnderscore (strings) {
 function setAttrValue (value) {
   if (value === undefined || null) {
     return true
-  } else if (!isNaN(value)) {
-    return +value
+  } else if (!!isNaN(value)) {
+    return value
   }
+    return +value
 }
 
 function setValidatorsObject (tmpValidators) {
@@ -20,7 +21,8 @@ function setValidatorsObject (tmpValidators) {
 
 function extractAttributes (input) {
   const { formValidators } = input.dataset
-  const tmpValidators = Object.fromEntries(splitUnderscore(formValidators.split(' ')))
+  const entries = splitUnderscore(formValidators.split(' '))
+  const tmpValidators = Object.fromEntries(entries)
   return setValidatorsObject(tmpValidators)
 }
 

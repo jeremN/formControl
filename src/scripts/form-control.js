@@ -122,6 +122,14 @@ function runValidator (field, attribute, value) {
     return !validators[attribute](value.trim(), field.customRegex)
   }
 
+  if (attribute === 'fileHasExtension') {
+    return !valdators[attribute](value, state.allowedFileExtensions)
+  }
+
+  if (typeof field[attribute] !== 'boolean') {
+    return !validators[attribute](value.trim(), field[attribute])
+  }
+
   return !validators[attribute](value.trim())
 }
 
@@ -139,7 +147,7 @@ function validateField (fieldToValidate, parentForm) {
     if (!state.noValidateAttributes.includes(attribute)) {
       formHasError = runValidator(fieldToValidate, attribute, value)
       if (formHasError) {
-        showFieldMessage(field, parentForm, replaceInString(state.errorsMsg[attribute]))
+        showFieldMessage(field, parentForm, replaceInString(state.errorsMsg[attribute], fieldToValidate[attribute]))
       }
     }
   })
@@ -231,14 +239,11 @@ export default function formControl (forms = null, config = null, useDateAttr = 
     state = mergeObject(state, config)
   }
 
-  console.debug(state)
-
   if (!forms 
     || forms && !Array.isArray(forms) 
     || forms && Array.isArray(forms) && !forms.length
     || !forms && useDateAttr) {
     formsArray = getAllForms(state.dataFormAttr, state.dataInputAttr)
-  console.debug(formsArray, state)
   } else {
     formsArray = [...forms]
   }

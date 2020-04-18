@@ -7,15 +7,18 @@ export const DEFAULT_ERROR_MESSAGES = {
   isSiret: 'Your Siret is invalid',
   isBic: 'Your BIC is invalid',
   isRequired: 'This field is required',
-  minLen: 'Value is too short, minimum is {{cond}} characters.',
-  maxLen: 'Value is too long, maximum is {{cond}} characters.',
-  min: 'Value is too small, minimum is {{cond}}.',
-  max: 'Value is too big, maximum is {{cond}}.',
-  quantity: 'Use digits only.',
   isNumeric: 'Value must be set to a number',
-  int: 'Value must be an integer',
-  length: 'Value must contain {{cond}} characters',
-  eq: 'Value must match {{cond}} field'
+  isInteger: 'Value must be an integer',
+  isEqual: 'Value must match {{cond}} field',
+  isLen: 'Value must contain {{cond}} characters',
+  isPassword: 'Password shoud contain 6 to 12 characters, numbers, at least one special character(@$_!%*?&), and at least one uppercase character and one lowercase',
+  minLen: 'Value is too short, minimum is {{cond}} characters',
+  maxLen: 'Value is too long, maximum is {{cond}} characters',
+  min: 'Value is too small, minimum is {{cond}}',
+  max: 'Value is too big, maximum is {{cond}}',
+  quantity: 'Use digits only',
+  radioIsChecked: 'You must checked one field at least',
+  fileHasExtension: 'Your file is invalid, this extension is not allowed',
 }
 
 export const DEFAULT_REGEXP = {
@@ -32,7 +35,7 @@ export const DEFAULT_REGEXP = {
   isNumeric: /^[0-9]+$/,
   isSiret: /^[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{5}$/,
 }
-
+export const DEFAULT_FILE_EXT = ['.jpg', '.jpeg', '.gif', '.png', '.webp']
 export const DEFAULT_ERROR_CLASS = 'has__error'
 export const DEFAULT_SUCCESS_CLASS = 'has__success'
 export const DEFAULT_FIELD_MSG_CLASS = '.form__message'
@@ -51,6 +54,7 @@ export default function defaultState () {
     inputParentClass: DEFAULT_FIELD_PARENT_CLASS,
     inputClass: DEFAULT_FIELD_CLASS,
     fieldMessageClass: DEFAULT_FIELD_MSG_CLASS,
+    allowedFileExtensions: DEFAULT_FILE_EXT,
     fieldMessageTemplate: `<div class="form__message"></div>`,
     dataFormAttr: DEFAULT_FORM_DATA_ATTR,
     dataInputAttr: DEFAULT_INPUT_DATA_ATTR,

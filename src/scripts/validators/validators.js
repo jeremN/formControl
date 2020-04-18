@@ -2,7 +2,6 @@ import { DEFAULT_REGEXP } from '../utilities/defaultTypes'
 
 //https://stackoverflow.com/questions/4234589/validation-of-file-extension-before-uploading-file
 export function fileHasExtension(value, extension) {
-  // const { value: fileName } = document.querySelector(field)
   return (new RegExp('(' + extension.join('|').replace(/\./g, '\\.') + ')$', "i")).test(value);
 }
 
@@ -45,16 +44,25 @@ export function maxLen(value, maxLength) {
   return value.length <= maxLength
 }
 
+export function min(value, min) {
+  return value >= mi
+}
+
+export function max(value, max) {
+  return value <= max
+}
+
 export function isNumeric(value, regExp = DEFAULT_REGEXP.isNumeric) {
-  return regExp.test(value)
+  return !isNan(value) && regExp.test(value)
 }
 
 export function isInteger(value) {
-
+  return Number.isInteger(value)
 }
 
-export function isEqual(value, baseValue) {
-  return value === baseValue
+export function isEqual(value, element) {
+  const baseEl = document.querySelector(`[name="${element}"]`)
+  return value === baseEl.value && baseEl.value.length > 0
 }
 
 export function isEmail(value, regExp = DEFAULT_REGEXP.isEmail) {
