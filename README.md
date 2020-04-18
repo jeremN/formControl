@@ -1,6 +1,7 @@
 # Form Validation with Javascript (es6+)
 
 ###Validators:
+
 |Name|Description|Example|
 |---|---|---|---|
 |`isRequired`|Field isn't empty|isRequired|
