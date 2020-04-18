@@ -45,7 +45,7 @@ export function maxLen(value, maxLength) {
   return value.length <= maxLength
 }
 
-export function isNumeric(value, regExp = DEFAULT_REGEXP.numRegexp) {
+export function isNumeric(value, regExp = DEFAULT_REGEXP.isNumeric) {
   return regExp.test(value)
 }
 
@@ -57,27 +57,27 @@ export function isEqual(value, baseValue) {
   return value === baseValue
 }
 
-export function isEmail(value, regExp = DEFAULT_REGEXP.emailRegexp) {
+export function isEmail(value, regExp = DEFAULT_REGEXP.isEmail) {
   return regExp.test(value)
 }
 
-export function isPassword(value, regExp = DEFAULT_REGEXP.passwordRegexp) {
+export function isPassword(value, regExp = DEFAULT_REGEXP.isPassword) {
   return (value.length > 0 && regExp.test(value))
 }
 
-export function isPhone(value, regExp = DEFAULT_REGEXP.phoneRegexp) {
+export function isPhone(value, regExp = DEFAULT_REGEXP.isPhone) {
   return regExp.test(value)
 }
 
-export function isIban(value, regExp = DEFAULT_REGEXP.ibanRegexp) {
+export function isIban(value, regExp = DEFAULT_REGEXP.isIban) {
   return regExp.test(value)
 }
 
-export function isBic(value, regExp = DEFAULT_REGEXP.bicRegexp) {
+export function isBic(value, regExp = DEFAULT_REGEXP.isBic) {
   return regExp.test(value)
 }
 
-export function isUrl(value, regExp = DEFAULT_REGEXP.urlRegexp) {
+export function isUrl(value, regExp = DEFAULT_REGEXP.isUrl) {
   return regExp.test(value)
 }
 
