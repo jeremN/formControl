@@ -61,7 +61,7 @@ export function isInteger(value) {
 }
 
 export function isEqual(value, element) {
-  const baseEl = document.querySelector(`[name="${element}"]`)
+  const baseEl = document.querySelector(element)
   return value === baseEl.value && baseEl.value.length > 0
 }
 

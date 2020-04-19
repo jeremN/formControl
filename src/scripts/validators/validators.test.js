@@ -56,17 +56,6 @@ describe('Test validators', () => {
     expect(isNumeric).toBe(false)
   })
 
-  /*
-  it('isEqual should return true if value is equal to specified value', () => {
-    let isEqualTo = validators.isEqual('test', 'test')
-    expect(isEqualTo).toBe(true)
-  })
-
-  it('isEqual should return false if value is not equal to specified value', () => {
-    let isEqualTo = validators.isEqual('test', 'not')
-    expect(isEqualTo).toBe(false)
-  }) */
-
   it('isEmail should return true if value is a valid email address', () => {
     let isEmailType = validators.isEmail('toto@to.fr')
     expect(isEmailType).toBe(true)
@@ -126,6 +115,43 @@ describe('Test validators', () => {
   it('isUrl should return false if value is not a valid url', () => {
     let isUrlType = validators.isUrl('google')
     expect(isUrlType).toBe(false)
+  })
+})
+
+describe('Test validators isEqual', () => {
+  let inputs = `
+    <input type="password" name="password" id="password-1" />
+  `
+  let password = null
+
+  beforeAll(() => {
+    document.body.insertAdjacentHTML('afterbegin', inputs)
+    password = document.querySelector('#password-1')
+  })
+
+  afterAll(() => {
+    document.body.innerHTML = ''
+    password = null
+  })
+  
+  it('isEqual should return true if value is equal to specified value', () => {
+    password.value = 'toto'
+    let isEqualTo = validators.isEqual('toto', '#password-1')
+    expect(isEqualTo).toBe(true)
+  })
+
+  it('isEqual should return false if value is not equal to specified value', () => {
+    password.value = 'test'
+    let isEqualTo = validators.isEqual('toto', '#password-1')
+    expect(isEqualTo).toBe(false)
+  })
+
+  it('isEqual should work with complex values', () => {
+    password.value = '23Te_sts'
+    let isEqualTo = validators.isEqual('23Te_sts', '#password-1')
+    let isEqualToBis = validators.isEqual('23Te%sts', '#password-1')
+    expect(isEqualTo).toBe(true)
+    expect(isEqualToBis).toBe(false)
   })
 })
 
