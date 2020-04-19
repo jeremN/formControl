@@ -130,6 +130,10 @@ describe('getAllForms should extract all data-attributes from form(s)', () => {
     `
     document.body.insertAdjacentHTML('afterbegin', html)
   })
+  
+  afterAll(() => {
+    document.body.innerHTML = ''
+  })
 
   it('should return an array', () => {
     const expected = [
@@ -155,5 +159,135 @@ describe('getAllForms should extract all data-attributes from form(s)', () => {
     ]
     const forms = getAllForms()
     expect(forms).toMatchObject(expected)
+    expect(forms).toHaveLength(1)
+  })
+
+  it('should return an array with length of two', () => {
+    const formBis = `
+      <form class="form js__form__control--3" data-form-control="true">
+        <div class="form__group">
+          <label for="name3">Name</label>
+          <input 
+            id="name3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isRequired minLen_4 maxLen_12"/>
+        </div>
+        <div class="form__group">
+          <label for="password">Password</label>
+          <input 
+            id="password3" 
+            name="password"
+            class="form__field" 
+            type="password"
+            data-form-validators="isPassword"/>
+        </div>
+        <div class="form__group">
+          <label for="passwordRepeat3">Password</label>
+          <input 
+            id="passwordRepeat3" 
+            name="password3"
+            class="form__field" 
+            type="password"
+            data-form-validators="isEqual_#password3"/>
+        </div>
+        <div class="form__group">
+          <label for="isNumber3">Integer</label>
+          <input 
+            id="isNumber3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isInteger"
+            data-error-msg-is-integer="Test custom error"/>
+        </div>
+        <div class="form__group">
+          <label for="number3">Number</label>
+          <input 
+            id="number3" 
+            class="form__field" 
+            type="number" 
+            data-form-validators="isRequired"/>
+          <div class="form__message"></div>
+        </div>
+        <div class="form__group">
+          <label for="phone3">Phone</label>
+          <input 
+            id="phone3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isPhone"/>
+          <div class="form__message"></span></div>
+        </div>
+        <div class="form__group">
+          <label for="email3">Email</label>
+          <input 
+            id="email3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isEmail"/>
+          <div class="form__message"></span></div>
+        </div>
+        <div class="form__group">
+          <label for="siret3">Siret</label>
+          <input 
+            id="siret3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isSiret"/>
+          <div class="form__message"></div>
+        </div>
+        <div class="form__group">
+          <label for="bic3">Bic</label>
+          <input 
+            id="bic3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isBic"/>
+          <div class="form__message"></div>
+        </div>
+        <div class="form__group">
+          <label for="iban3">Iban</label>
+          <input 
+            id="iban3" 
+            class="form__field" 
+            type="text"
+            data-form-validators="isIban"/>
+          <div class="form__message"></div>
+        </div>
+        <div class="form__group">
+          <label for="url3">URL</label>
+          <input 
+            id="url3" 
+            class="form__field" 
+            type="url"
+            data-form-validators="isUrl"/>
+          <div class="form__message"></div>
+        </div> 
+        <div class="form__group">
+          <label for="select3">Select</label>
+          <select id="select3" data-form-validators="isRequired">
+            <option value="">Make a choice</option>
+            <option value="1">1</option>
+          </select>
+          <div class="form__message"></div>
+        </div> 
+        <div class="form__group">
+          <label for="checking3">Checked</label>
+          <input 
+            id="checking3" 
+            class="form__field" 
+            type="checkbox"
+            data-form-validators="isChecked"/>
+          <div class="form__message"></div>
+        </div>  
+        <div class="form__group form__group--row">
+          <button type="submit">Send</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    `
+    document.body.insertAdjacentHTML('beforeend', formBis)
+    const forms = getAllForms()
+    expect(forms).toHaveLength(2)
   })
 })
