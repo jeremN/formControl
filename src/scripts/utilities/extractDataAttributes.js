@@ -76,6 +76,6 @@ export default function getAllForms () {
       fields: fields,
     })
   })
-  console.debug('getAllForms', forms)
+  
   return forms
 }

@@ -1,6 +1,6 @@
 import * as validators from './validators.js'
 
-describe('Test validators', () => {
+describe('Validators tests', () => {
 
   it('required should return true if value is defined and not empty', () => {
     let required = validators.isRequired('test')
