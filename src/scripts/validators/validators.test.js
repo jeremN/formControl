@@ -56,6 +56,7 @@ describe('Test validators', () => {
     expect(isNumeric).toBe(false)
   })
 
+  /*
   it('isEqual should return true if value is equal to specified value', () => {
     let isEqualTo = validators.isEqual('test', 'test')
     expect(isEqualTo).toBe(true)
@@ -64,7 +65,7 @@ describe('Test validators', () => {
   it('isEqual should return false if value is not equal to specified value', () => {
     let isEqualTo = validators.isEqual('test', 'not')
     expect(isEqualTo).toBe(false)
-  })
+  }) */
 
   it('isEmail should return true if value is a valid email address', () => {
     let isEmailType = validators.isEmail('toto@to.fr')

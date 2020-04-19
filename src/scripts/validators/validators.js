@@ -53,7 +53,7 @@ export function max(value, max) {
 }
 
 export function isNumeric(value, regExp = DEFAULT_REGEXP.isNumeric) {
-  return !isNan(value) && regExp.test(value)
+  return !isNaN(value) && regExp.test(value)
 }
 
 export function isInteger(value) {
