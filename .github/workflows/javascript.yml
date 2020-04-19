@@ -1,4 +1,4 @@
-name: Javascript worklow
+name: Javascript CI
 
 on: [push]
 
@@ -11,14 +11,12 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with: 
-        node-version: ${{ matrix.node-version }}
-      - name: npm install, and test
-      runs: |
-        npm install
-        npm test
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm test
       env:
         CI: true
