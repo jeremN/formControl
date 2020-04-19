@@ -33,3 +33,12 @@ export function isFunction (functionToCheck) {
 export function hasObjectLen (obj) {
   return Object.keys(obj).length > 0 && obj.constructor === Object
 }
+
+/** Capitalize the first letter of a string
+  * @param {String}
+  * @return {String}
+  */
+export function capitalize (s) {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}

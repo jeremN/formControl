@@ -1,4 +1,4 @@
-export const DEFAULT_ERROR_MESSAGES = {
+const DEFAULT_ERROR_MESSAGES = {
   isEmail: 'Please enter a valid email adress',
   isPhone: 'Please enter a valid phone number',
   isUrl: 'Please enter a valid url',
@@ -35,15 +35,28 @@ export const DEFAULT_REGEXP = {
   isNumeric: /^[0-9]+$/,
   isSiret: /^[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{5}$/,
 }
-export const DEFAULT_FILE_EXT = ['.jpg', '.jpeg', '.gif', '.png', '.webp']
-export const DEFAULT_ERROR_CLASS = 'has__error'
-export const DEFAULT_SUCCESS_CLASS = 'has__success'
-export const DEFAULT_FIELD_MSG_CLASS = '.form__message'
-export const DEFAULT_FIELD_MSG_WORDING_CLASS = '.form__message-wording'
-export const DEFAULT_FIELD_CLASS = '.form__control'
-export const DEFAULT_FIELD_PARENT_CLASS = '.form__group'
-export const DEFAULT_FORM_DATA_ATTR = '[data-form-control="true"]'
-export const DEFAULT_INPUT_DATA_ATTR = '[data-form-validators]'
+
+const DEFAULT_FILE_EXT = ['.jpg', '.jpeg', '.gif', '.png', '.webp']
+const DEFAULT_ERROR_CLASS = 'has__error'
+const DEFAULT_SUCCESS_CLASS = 'has__success'
+const DEFAULT_FIELD_MSG_CLASS = '.form__message'
+const DEFAULT_FIELD_MSG_WORDING_CLASS = '.form__message-wording'
+const DEFAULT_FIELD_CLASS = '.form__control'
+const DEFAULT_FIELD_PARENT_CLASS = '.form__group'
+
+const DEFAULT_FORM_DATA_ATTR = '[data-form-control="true"]'
+const DEFAULT_INPUT_DATA_ATTR = '[data-form-validators]'
+const DEFAULT_INPUT_EVT_TYPE_ATTR = 'eventType'
+const DEFAULT_FORM_VALIDATION_TYPE_ATTR = 'validationType'
+
+export function defaultDataAttr () {
+  return {
+    formControlAttr: DEFAULT_FORM_DATA_ATTR,
+    inputControlAttr: DEFAULT_INPUT_DATA_ATTR,
+    validationTypeAttr: DEFAULT_FORM_VALIDATION_TYPE_ATTR,
+    eventTypeAttr: DEFAULT_INPUT_EVT_TYPE_ATTR
+  }
+}
 
 export default function defaultState () {
   return {
@@ -56,12 +69,11 @@ export default function defaultState () {
     fieldMessageClass: DEFAULT_FIELD_MSG_CLASS,
     allowedFileExtensions: DEFAULT_FILE_EXT,
     fieldMessageTemplate: `<div class="form__message"></div>`,
-    dataFormAttr: DEFAULT_FORM_DATA_ATTR,
-    dataInputAttr: DEFAULT_INPUT_DATA_ATTR,
     noValidateAttributes: ['field', 'rule'],
     validationType: 'onSubmit',
     fieldEvent: 'input',
     timer: 3000,
-    afterValidation: null
+    afterValidation: null,
+    customValidators: null,
   }
 }

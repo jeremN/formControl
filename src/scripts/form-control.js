@@ -6,6 +6,7 @@ import {
   isFunction, 
   isHTMLElement, 
   hasObjectLen,
+  capitalize,
 } from './utilities/utilities'
 
 let state = defaultState()
@@ -115,15 +116,22 @@ function isFormValid (form) {
   */
 function runValidator (field, attribute, value) {
   if (isFunction(field[attribute])) {
-    return field[attribute]
+    return field[attribute](field, value)
   }
 
   if (field.customRegex) {
-    return !validators[attribute](value.trim(), field.customRegex)
+    if (!hasObjectLen(field.customRegex)) {
+      throw Error('FormControl - runValidator: customRegex properties must be an object')
+    }
+    return !validators[attribute](value.trim(), field.customRegex[attribute])
+  }
+
+  if (state.customValidators && state.customValidators[attribute]) {
+    return !state.customValidators[attribute](value.trim(), field)
   }
 
   if (attribute === 'fileHasExtension') {
-    return !valdators[attribute](value, state.allowedFileExtensions)
+    return !validators[attribute](value, state.allowedFileExtensions)
   }
 
   if (typeof field[attribute] !== 'boolean') {
@@ -133,21 +141,43 @@ function runValidator (field, attribute, value) {
   return !validators[attribute](value.trim())
 }
 
+/** Get error message
+  * @param {HTMLElement} input
+  * @param {String} attribute
+  * @param {Object} errorsOptions
+  * @return {String}
+  */
+function getErrorMessage (input, attribute, errorsOptions) {
+  const { [`errorMsg${capitalize(attribute)}`]: customError } = input.dataset
+
+  if (errorsOptions && errorsOptions[attribute]) {
+    return errorsOptions[attribute]
+  }
+
+  if (customError) {
+    return customError
+  }
+
+  return state.errorsMsg[attribute]
+}
+
 /** Validate field
   * @param {Object} fieldToValidate
   * @param {className || NodeElement} parentForm
   */
 function validateField (fieldToValidate, parentForm) {
   let formHasError = false
-  let { field } = fieldToValidate
+  let { field, errorMsg = null } = fieldToValidate
   clearFieldMessage(field, parentForm)
-  const { value } = getDomElement(field, parentForm)
+  const input = getDomElement(field, parentForm)
   
   Object.keys(fieldToValidate).forEach((attribute) => {
     if (!state.noValidateAttributes.includes(attribute)) {
-      formHasError = runValidator(fieldToValidate, attribute, value)
+      formHasError = runValidator(fieldToValidate, attribute, input.value)
+
       if (formHasError) {
-        showFieldMessage(field, parentForm, replaceInString(state.errorsMsg[attribute], fieldToValidate[attribute]))
+        const message = getErrorMessage(input, attribute, errorMsg)
+        showFieldMessage(field, parentForm, replaceInString(message, fieldToValidate[attribute]))
       }
     }
   })
@@ -243,7 +273,7 @@ export default function formControl (forms = null, config = null, useDateAttr = 
     || forms && !Array.isArray(forms) 
     || forms && Array.isArray(forms) && !forms.length
     || !forms && useDateAttr) {
-    formsArray = getAllForms(state.dataFormAttr, state.dataInputAttr)
+    formsArray = getAllForms()
   } else {
     formsArray = [...forms]
   }

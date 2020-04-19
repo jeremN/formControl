@@ -5,7 +5,10 @@
 </head>
 <body class="">
 	<main class="container">
-		<form class="form js__form__control--2" data-form-control="true">
+		<form 
+			class="form js__form__control--2" 
+			data-form-control="true"
+			data-validation-type="onSubmit">
 		  <div class="form__group">
 		    <label for="name2">Name</label>
 		    <input 
@@ -38,7 +41,8 @@
 		    	id="isNumber" 
 		    	class="form__field" 
 		    	type="text"
-	    	  data-form-validators="isInteger"/>
+	    	  data-form-validators="isInteger"
+	    	  data-error-msg-is-integer="Test custom error"/>
 		  </div>
 		  <div class="form__group">
 		    <label for="number2">Number</label>
@@ -105,7 +109,7 @@
 		  </div> 
 		  <div class="form__group">
 		    <label for="select2">Select</label>
-		    <select id="select2">
+		    <select id="select2" data-form-validators="isRequired">
 		      <option value="">Make a choice</option>
 		      <option value="1">1</option>
 		    </select>

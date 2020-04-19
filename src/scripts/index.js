@@ -8,9 +8,15 @@ formControl()
 const formsDOM = [
   {
     form: '.js__form__control--1',
+    validate: '',
     fields: [
       {
         field: '#name',
+        errorsMsg: {
+          isRequired: 'my cutom error message',
+          minLen: 'my cutom error message',
+          maxLen: 'my cutom error message',
+        },
         isRequired: true,
         minLen: 4,
         maxLen: 12,
