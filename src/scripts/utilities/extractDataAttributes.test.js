@@ -1,6 +1,6 @@
 import getAllForms from './extractDataAttributes.js';
 
-describe('getAllForms should extract all data-attributes from form(s)', () => {
+describe('FormControl should extract the forms array if i use data-attr', () => {
   beforeAll(() => {
     const html = `
       <form 
@@ -135,7 +135,7 @@ describe('getAllForms should extract all data-attributes from form(s)', () => {
     document.body.innerHTML = ''
   })
 
-  it('should return an array', () => {
+  it('should return the expected array', () => {
     const expected = [
       {
         form: document.querySelector('.js__form__control--2'),

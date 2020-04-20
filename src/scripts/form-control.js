@@ -280,3 +280,7 @@ export default function formControl (forms = null, config = null, useDateAttr = 
 
   addEventListeners(formsArray)
 }
+
+export function getCurrentState () {
+  return state
+}
