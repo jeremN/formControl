@@ -31,6 +31,7 @@ export function isFunction (functionToCheck) {
   * @return {Boolean}
   */
 export function hasObjectLen (obj) {
+  if (!obj) return false
   return Object.keys(obj).length > 0 && obj.constructor === Object
 }
 
@@ -41,4 +42,17 @@ export function hasObjectLen (obj) {
 export function capitalize (s) {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+/** Update oldState with newState
+  * @param {Object} oldState, newState
+  * @return {Object}
+  */
+export function updateState (oldState, newState) {
+  const updatedState = { ...oldState }
+  Object.keys(newState).forEach((key) => {
+    updatedState[key] = hasObjectLen(oldState[key]) && hasObjectLen(newState[key]) ? mergeObject(oldState[key], newState[key]) : newState[key]
+  })
+
+  return updatedState
 }

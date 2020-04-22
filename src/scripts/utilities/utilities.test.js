@@ -59,4 +59,43 @@ describe('Utilities tests', () => {
     const result = utilities.capitalize(myString)
     expect(result).toMatch(expectedStr)
   })
+
+  it('updateState should updateState correctly', () => {
+    const expected = {
+      a: 1,
+      b: 'Hello there general Kenobi!',
+      c: false,
+      z: 42,
+      y: {
+        g: 'Hi',
+        l: 2
+      },
+      k: {
+        o: 'log(n)'
+      }
+    }
+    const updatedState = utilities.updateState({
+      a: 1,
+      b: 'Hello world',
+      c: true,
+      y: {
+        g: 4,
+        l: 7
+      },
+
+    }, {
+      b: 'Hello there general Kenobi!',
+      c: false,
+      z: 42,
+      y: {
+        g: 'Hi',
+        l: 2
+      },
+      k: {
+        o: 'log(n)'
+      }    
+    })
+    expect(updatedState).toMatchObject(expected)
+
+  })
 })

@@ -2,7 +2,7 @@ import * as validators from './validators/validators'
 import defaultState from './utilities/defaultTypes'
 import getAllForms from './utilities/extractDataAttributes'
 import { 
-  mergeObject, 
+  updateState, 
   isFunction, 
   isHTMLElement, 
   hasObjectLen,
@@ -116,22 +116,25 @@ function isFormValid (form) {
   */
 function runValidator (field, attribute, value) {
   if (isFunction(field[attribute])) {
-    return field[attribute](field, value)
+    return !field[attribute](value.trim(), field)
   }
 
-  if (field.customRegex) {
+  if (field.customRegex && isFunction(validators[attribute])) {
     if (!hasObjectLen(field.customRegex)) {
       throw Error('FormControl - runValidator: customRegex properties must be an object')
     }
     return !validators[attribute](value.trim(), field.customRegex[attribute])
   }
 
-  if (state.customValidators && state.customValidators[attribute]) {
+  if (hasObjectLen(state.customValidators) && state.customValidators[attribute]){
+    if (!isFunction(state.customValidators[attribute])) {
+      throw Error(`FormControl - customValidators: customValidators[${attribute}] must be a function`)
+    }
     return !state.customValidators[attribute](value.trim(), field)
   }
 
   if (attribute === 'fileHasExtension') {
-    return !validators[attribute](value, state.allowedFileExtensions)
+    return !validators[attribute](value.trim(), state.allowedFileExtensions)
   }
 
   if (typeof field[attribute] !== 'boolean') {
@@ -266,7 +269,7 @@ export default function formControl (forms = null, config = null, useDateAttr = 
   let formsArray = null
 
   if (config && hasObjectLen(config)) {
-    state = mergeObject(state, config)
+    state = updateState(state, config)
   }
 
   if (!forms 

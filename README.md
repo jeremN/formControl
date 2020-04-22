@@ -216,8 +216,10 @@
 
 ### TODO:
  - unit test => 1/???
- - allow custom validators => 1/???
+ - allow custom validators => 1/3
  - allow validation by field (on 'input', 'keyup' or other events) => 1/2
  - allow custom errors messages => 1/2
  - allow custom regexp validators => 1/2
  - allow success message
+ - support multiple radio input => 1/2
+ - complete README
