@@ -1,111 +1,347 @@
 # Form Validation with Javascript (es6+)
 
 ### Install
+```
+
+```
 
 ### Usage
+**formControl** take three arguments:
+
+- forms: an `array` containing all yours forms object, set to null by default (see (#forms-property)).
+
+```javascript
+const forms = [
+  {
+    form: '.js__form__control--1',
+    validate: '',
+    fields: [
+      {
+        field: '#name',
+        errorsMsg: {
+          isRequired: 'my cutom error message',
+          minLen: 'my cutom error message',
+          maxLen: 'my cutom error message',
+        },
+        isRequired: true,
+        minLen: 4,
+        maxLen: 12,
+      }, {
+        field: '#number',
+        isRequired: true,
+      }, {
+        field: '#phone',
+        isPhone: true,
+      }, {
+        field: '#email',
+        isEmail: true,
+      }, {
+        field: '#siret',
+        isSiret: true,
+      }, {
+        field: '#bic',
+        isBic: true,
+      }, {
+        field: '#iban',
+        isIban: true,
+      }, {
+        field: '#url',
+        isUrl: true,
+      }, {
+        field: '#checking',
+        isChecked: true,
+      },
+    ]
+  }, {
+    form: '.js__form__control--2',
+    fields: [
+      {
+        field: '#name2',
+        isRequired: true,
+        minLen: 4,
+        maxLen: 12,
+      }, {
+        field: '#number2',
+        isRequired: true,
+      }, {
+        field: '#phone2',
+        isPhone: true,
+      }, {
+        field: '#email2',
+        isEmail: true,
+      }, {
+        field: '#siret2',
+        isSiret: true,
+      }, {
+        field: '#bic2',
+        isBic: true,
+      }, {
+        field: '#iban2',
+        isIban: true,
+      }, {
+        field: '#url2',
+        isUrl: true,
+      }, {
+        field: '#checking2',
+        isChecked: true,
+      },
+    ]
+  },
+]
+```
+
+- config: an `object` containing your properties, custom validators, errors messages... that will overwrite the default settings (see (#config-property)).
+
+- useDateAttr: a `boolean`, telling formControl to use data-attr or not, set to true by default.
+
+### FormControl
 
 1. Using data-attributes
 
+You can use data-attributes to initialize formControl, see (#data-attributes) below.
+
 ```html
 <body>
-  <form class="form js__form__control--2" data-form-control="true">
-      <div class="form__group">
-        <label for="name2">Name</label>
-        <input 
-          id="name2" 
-          class="form__field" 
-          type="text"
-          data-form-validators="isRequired minLen_4 maxLen_12"/>
-      </div>
-      <div class="form__group form__group--row">
-        <button type="submit">Send</button>
-      </div>
-  </form>
+<form class="form js__form__control--2" data-form-control="true">
+    <div class="form__group">
+      <label for="name2">Name</label>
+      <input 
+        id="name2" 
+        class="form__field" 
+        type="text"
+        data-form-validators="isRequired minLen_4 maxLen_12"/>
+    </div>
+    <div class="form__group form__group--row">
+      <button type="submit">Send</button>
+    </div>
+</form>
 </body>
 
 <script>
-  import formControl from './form-control';
+import formControl from './form-control';
 
-  formControl()
+formControl()
 </script>
 ```
 
 2. Using an object
+
+Or you can use forms array to initialize formControl, see (#forms-property) below.
+
 ```html
 <body>
-  <form class="form js__form__control">
-      <div class="form__group">
-        <label for="name2">Name</label>
-        <input 
-          id="name2" 
-          class="form__field" 
-          type="text"/>
-      </div>
-      <button type="submit">Send</button>
-  </form>
+<form class="form js__form__control">
+    <div class="form__group">
+      <label for="name2">Name</label>
+      <input 
+        id="name2" 
+        class="form__field" 
+        type="text"/>
+    </div>
+    <button type="submit">Send</button>
+</form>
 </body>
 <script>
-  import formControl from './form-control';
+import formControl from './form-control';
 
-  const forms = [ 
-    {
-      form: '.js__form__control--2',
-      fields: [
-        {
-          field: '#name2',
-          isRequired: true,
-          minLen: 4,
-          maxLen: 12,
-        }, {
-          field: '#number2',
-          isRequired: true,
-        }, {
-          field: '#phone2',
-          isPhone: true,
-        }, {
-          field: '#email2',
-          isEmail: true,
-        }, {
-          field: '#siret2',
-          isSiret: true,
-        }, {
-          field: '#bic2',
-          isBic: true,
-        }, {
-          field: '#iban2',
-          isIban: true,
-        }, {
-          field: '#url2',
-          isUrl: true,
-        }, {
-          field: '#checking2',
-          isChecked: true,
-        },
-      ]
-    },
-  ]
+const forms = [ 
+  {
+    form: '.js__form__control--2',
+    fields: [
+      {
+        field: '#name2',
+        isRequired: true,
+        minLen: 4,
+        maxLen: 12,
+      }, {
+        field: '#number2',
+        isRequired: true,
+      }, {
+        field: '#phone2',
+        isPhone: true,
+      }, {
+        field: '#email2',
+        isEmail: true,
+      }, {
+        field: '#siret2',
+        isSiret: true,
+      }, {
+        field: '#bic2',
+        isBic: true,
+      }, {
+        field: '#iban2',
+        isIban: true,
+      }, {
+        field: '#url2',
+        isUrl: true,
+      }, {
+        field: '#checking2',
+        isChecked: true,
+      },
+    ]
+  },
+]
 
-  formControl(forms)  
+formControl(forms)  
 </script>
 ```
 
 3. Adding custom validators
 
-4. Changing validation Type
+You can add your own validator by:
+- adding an object in customValidators in the config object
 
-5. Adding custom event type
+```javascript
+const customState = {
+  customValidators: {
+    myCustomValidator: (value) => { 
+      return value != "2"
+    }
+  }, 
+  errorsMsg: {
+    isNotEqualTwo: 'Field should not be equal to two'
+  }
+}
+```
+then add the corresponding data-attr:
+
+```html
+<input data-form-validators="myCustomValidatorName"/>
+```
+or in the field object:
+
+```javascript
+<input data-form-validators="myCustomValidatorName"/>
+```
+
+- or add in field object your validator
+
+```javascript
+const forms = [
+  {
+    form: '.js__form-control',
+    fields: [
+      {
+        field: '#text4',
+        myCustomValidator: (value) => {
+          return value === 'hello'
+        },
+      },
+    ]
+  }
+]    
+```
+in both case, don't forget to add the corresponding error message.
 
 
-### Forms object
+4. Adding custom error message
+
+You can add custom error message:
+- by setting a `data-attr`
+
+```html
+<input id="text2" class="form__field" type="text" data-error-msg-is-not-equal-two="Field should not be equal to two" />
+```
+
+- by using the `errorsMsg` key in config
+
+```javascript
+const customState = {
+  ...
+  }, 
+  errorsMsg: {
+    myCustomErrorMsg: 'My error message'
+  }
+}
+```
+- by using the `errorMsg` key in field object
+
+```javascript
+const forms = [
+  {
+    form: '.js__form-control',
+    fields: [
+      {
+        field: '#text4',
+        errorMsg: {
+          myCustomErrorMsg: 'My error message'
+        }  
+      }
+    ],
+  }
+]
+```
+
+5. Changing event type
+
+By default `formControl` perform validation when the form is submitted,
+you can use the `onFields` validation type if you want to perform 'live' validation when a user type in an input field.
+
+To do this, set `validationType` key in config with the value: `onFields`
+
+```javascript
+const config = {
+  validationType: 'onFields'
+}
+```
+
+or use `validate` key in form object:
+
+```javascript
+const forms = [
+  {
+    form: '#myFormID',
+    validate: 'onFields',
+    ...
+  }
+]
+```
+
+by default `input` event listener will be used, to change this behavior, you can:
+- add the `evtType` key in field object
+
+```javascript
+const forms = [
+  {
+    ...,
+    fields: [ 
+      {
+        field: '.myField',
+        evtType: 'keyup'
+      }
+    ]
+  }
+]
+```
+
+6. Adding custom classes
+
+You can set custom CSS classes for field and error text block by passing an object as the config argument (see (#config-property) below for the used properties).
+
+7. Ajax form
+
+If you need form that send data by ajax you can set callback ```afterValidation```. It will be called only if form is valid and afterValidation is a function.
+Two arguments will be passed, the current form, and the corresponding fields array.
+
+```javascript
+let validation = formControl(null, {
+  afterValidation: (currentForm, fields) {
+    '...your code here'
+  }
+});
+```
+
+
+### [Forms property](#forms-property)
 
 | Name | Type | Description | Default (if applicable) | Example |
 |------|------|-------------|-------------------------|---------|
 | `form` | String | Form selector (ID, className...) |  | '.js__form__control--1' |
 | `validate` | String | Validation type used by FormControl (two possible value: 'onSubmit', 'onFields') | 'onSubmit' | 'onSubmit' |
-| `fields` | Array | Fields to validate |  | [{ field: '#number', isRequired: true }] |
+| `fields` | Array | Fields to validate |  | [{ field: '#number', isRequired: true }, {...}] |
 
 
-### Field object
+### [Field object](#field object)
 
 | Name | Type | Description | Example |
 |------|------|-------------|---------|
@@ -115,7 +351,7 @@
 | `evtType` | String | Event applied to field event listener (if validationType = 'onFields') | evtType: 'keyup' | 
 
 
-### Config object
+### [Config object](#config-property)
 
 | Name | Type | Description | Default |
 |------|------|-------------|---------|
@@ -136,7 +372,7 @@
 | `customValidators` | Object | An object containing your custom validators functions | `null` |
 
 
-### Data-attributes
+### [Data-attributes](#data-attributes)
 
 | Name | Description | Example |
 |------|-------------|---------|
@@ -147,7 +383,7 @@
 | `[data-error-msg-my-validator-name]` | Apply custom error message on input | '<input type="text" data-error-msg-is-required="my custom error message"/>' |
 
 
-### Validators:
+### [Validators](#validators)
 
 | Name | Description | Example | 
 |------|-------------|---------| 
@@ -215,11 +451,5 @@
 
 
 ### TODO:
- - unit test => 1/???
- - allow custom validators => 1/3
- - allow validation by field (on 'input', 'keyup' or other events) => 1/2
- - allow custom errors messages => 1/2
- - allow custom regexp validators => 1/2
- - allow success message
  - support multiple radio input => 1/2
  - complete README

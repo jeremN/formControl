@@ -209,7 +209,7 @@ function onSubmitCallback (evt, fields, submittedForm, callback) {
     if (!isFunction(callback)) {
       throw Error('FormControl - onSubmitCallback: afterValidation argument is not a function')
     }
-    callback(submittedForm)
+    callback(submittedForm, fields)
   }
 }
 
@@ -238,7 +238,7 @@ function onFieldsListener (currentForm, fields, callback) {
   })
 
   if (callback) {
-    
+    onSubmitListener(currentForm, fields, callback)
   }
 }
 
