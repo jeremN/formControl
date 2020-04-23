@@ -8,7 +8,7 @@
 ### Usage
 **formControl** take three arguments:
 
-- forms: an `array` containing all yours forms object, set to null by default (see (#forms-property)).
+- forms: an `array` containing all yours forms object, set to null by default (see [Forms](#forms-property)).
 
 ```javascript
 const forms = [
@@ -90,7 +90,7 @@ const forms = [
 ]
 ```
 
-- config: an `object` containing your properties, custom validators, errors messages... that will overwrite the default settings (see (#config-property)).
+- config: an `object` containing your properties, custom validators, errors messages... that will overwrite the default settings (see [Config][Config object](#config-property)).
 
 - useDateAttr: a `boolean`, telling formControl to use data-attr or not, set to true by default.
 
@@ -98,7 +98,7 @@ const forms = [
 
 1. Using data-attributes
 
-You can use data-attributes to initialize formControl, see (#data-attributes) below.
+You can use data-attributes to initialize formControl, see [Data-attributes][Data-attributes](#data-attributes) below.
 
 ```html
 <body>
@@ -124,9 +124,9 @@ formControl()
 </script>
 ```
 
-2. Using an object
+2. Using forms array
 
-Or you can use forms array to initialize formControl, see (#forms-property) below.
+Or you can use forms array to initialize formControl, see [Forms](#forms-property) below.
 
 ```html
 <body>
@@ -316,7 +316,7 @@ const forms = [
 
 6. Adding custom classes
 
-You can set custom CSS classes for field and error text block by passing an object as the config argument (see (#config-property) below for the used properties).
+You can set custom CSS classes for field and error text block by passing an object as the config argument (see [Config object](#config-property) below for the used properties).
 
 7. Ajax form
 
@@ -332,7 +332,7 @@ let validation = formControl(null, {
 ```
 
 
-### [Forms property](#forms-property)
+### <a id="forms-property">Forms</a>
 
 | Name | Type | Description | Default (if applicable) | Example |
 |------|------|-------------|-------------------------|---------|
@@ -341,7 +341,7 @@ let validation = formControl(null, {
 | `fields` | Array | Fields to validate |  | [{ field: '#number', isRequired: true }, {...}] |
 
 
-### [Field object](#field object)
+### <a id="field-object">Field object</a>
 
 | Name | Type | Description | Example |
 |------|------|-------------|---------|
@@ -351,7 +351,7 @@ let validation = formControl(null, {
 | `evtType` | String | Event applied to field event listener (if validationType = 'onFields') | evtType: 'keyup' | 
 
 
-### [Config object](#config-property)
+### <a id="config-property">Config</a>
 
 | Name | Type | Description | Default |
 |------|------|-------------|---------|
@@ -372,7 +372,7 @@ let validation = formControl(null, {
 | `customValidators` | Object | An object containing your custom validators functions | `null` |
 
 
-### [Data-attributes](#data-attributes)
+### <a id="data-attributes">Data-attributes</a>
 
 | Name | Description | Example |
 |------|-------------|---------|
@@ -383,7 +383,7 @@ let validation = formControl(null, {
 | `[data-error-msg-my-validator-name]` | Apply custom error message on input | '<input type="text" data-error-msg-is-required="my custom error message"/>' |
 
 
-### [Validators](#validators)
+### <a id="validators">Validators</a>
 
 | Name | Description | Example | 
 |------|-------------|---------| 
