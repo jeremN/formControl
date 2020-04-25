@@ -1,5 +1,7 @@
 ![.github/workflows/test.yml](https://github.com/jeremN/formControl/workflows/.github/workflows/test.yml/badge.svg?branch=master)
 
+![Publish](https://github.com/jeremN/formControl/workflows/Publish/badge.svg?branch=master)
+
 # Form Validation with Javascript (es6+)
 
 ### Install
