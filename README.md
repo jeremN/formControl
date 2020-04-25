@@ -6,7 +6,7 @@
 
 ### Install
 ```
-npm i form-control-js
+npm i @jeremn/form-control-js
 ```
 
 ### Usage
