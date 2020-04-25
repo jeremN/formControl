@@ -8,6 +8,9 @@
     "dev": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "test": "jest"
   },
+  "files":  [
+    "dist/form-control.js"
+  ],  
   "homepage": "https://github.com/jeremN/formControl/blob/master/README.md",
   "repository": {
     "type": "git",
