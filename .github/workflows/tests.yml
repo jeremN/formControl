@@ -1,14 +1,16 @@
-name: Tests 
+name: Install and Tests
 on: 
   push: 
-    tags-ignore:
-      - v*.*.*
+    branches:
+      - '*'
+      tags-ignore:
+        - v*.*.*
 
   pull_request:
     branches:
       - '*'
-    tags-ignore:
-      - v*.*.*
+      tags-ignore:
+        - v*.*.*
 
 
 jobs: 
