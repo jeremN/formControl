@@ -1,12 +1,18 @@
 {
   "name": "formControl",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Form validation with javascript (es2015+)",
+  "main": "./dist/form-control.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production --config webpack.prod.js",
+    "dev": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "test": "jest"
+  },
+  "homepage": "https://github.com/jeremN/formControl/blob/master/README.md",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/jeremN/formControl",
+    "directory": "dist"
   },
   "keywords": [
     "form",
