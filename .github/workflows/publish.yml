@@ -1,11 +1,10 @@
 name: Publish
 on:
-  push:
+  release:
     branches:
       - master
-      
-      tags:
-        - v*.*.*
+    tags:
+      - v*.*.*
 
 jobs:
   build:
