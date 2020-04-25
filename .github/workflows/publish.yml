@@ -1,10 +1,7 @@
 name: Publish
 on:
   release:
-    branches:
-      - master
-    tags:
-      - v*.*.*
+    types: [published]
 
 jobs:
   build:
