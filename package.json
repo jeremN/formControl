@@ -1,6 +1,6 @@
 {
   "name": "@jeremn/form-control-js",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Form validation with javascript (es2015+)",
   "main": "dist/form-control.js",
   "scripts": {
@@ -10,8 +10,8 @@
   },
   "homepage": "https://github.com/jeremN/formControl/blob/master/README.md",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/jeremN/formControl",
+    "type": "git",
+    "url": "https://github.com/jeremN/formControl",
     "directory": "dist"
   },
   "keywords": [
@@ -61,6 +61,6 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.0"
+    "@babel/runtime": "^7.8.0",
   }
 }

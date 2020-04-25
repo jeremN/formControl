@@ -1,10 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
 const PUBLIC_PATH = path.resolve(__dirname, 'dist')
-require('babel-polyfill')
 
 module.exports = {
-  entry: ['babel-polyfill', './src/scripts/form-control.js'],
+  entry: ['./src/scripts/form-control.js'],
   output: {
     filename: 'form-control.js',
     path: PUBLIC_PATH
