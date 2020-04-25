@@ -1,7 +1,5 @@
 ![Install and Tests](https://github.com/jeremN/formControl/workflows/Install%20and%20Tests/badge.svg)
 
-![Publish](https://github.com/jeremN/formControl/workflows/Publish/badge.svg)
-
 # Form Validation with Javascript (es6+)
 
 ### Install
