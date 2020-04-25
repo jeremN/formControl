@@ -1,6 +1,6 @@
-![.github/workflows/test.yml](https://github.com/jeremN/formControl/workflows/.github/workflows/test.yml/badge.svg?branch=master)
+![Install and Tests](https://github.com/jeremN/formControl/workflows/Install%20and%20Tests/badge.svg)
 
-![Publish](https://github.com/jeremN/formControl/workflows/Publish/badge.svg?branch=master)
+![Publish](https://github.com/jeremN/formControl/workflows/Publish/badge.svg?)
 
 # Form Validation with Javascript (es6+)
 
