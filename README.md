@@ -90,7 +90,7 @@ const forms = [
 ]
 ```
 
-- config: an `object` containing your properties, custom validators, errors messages... that will overwrite the default settings (see [Config][Config object](#config-property)).
+- config: an `object` containing your properties, custom validators, errors messages... that will overwrite the default settings (see [Config object](#config-property)).
 
 - useDateAttr: a `boolean`, telling formControl to use data-attr or not, set to true by default.
 
@@ -98,7 +98,7 @@ const forms = [
 
 1. Using data-attributes
 
-You can use data-attributes to initialize formControl, see [Data-attributes][Data-attributes](#data-attributes) below.
+You can use data-attributes to initialize formControl, see [Data-attributes](#data-attributes) below.
 
 ```html
 <body>
@@ -320,7 +320,7 @@ You can set custom CSS classes for field and error text block by passing an obje
 
 7. Ajax form
 
-If you need form that send data by ajax you can set callback ```afterValidation```. It will be called only if form is valid and afterValidation is a function.
+If you need form that send data by ajax you can set callback `afterValidation`. It will be called only if form is valid and afterValidation is a function.
 Two arguments will be passed, the current form, and the corresponding fields array.
 
 ```javascript
