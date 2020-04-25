@@ -1,9 +1,16 @@
 name: Test
 
 on: 
-  [push, pull_request]: 
+  push: 
     tags-ignore:
       - v*.*.*
+
+  pull_request:
+    branches:
+      - '*'
+    tags-ignore:
+      - v*.*.*
+
 
 jobs: 
   test:
