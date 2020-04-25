@@ -24,6 +24,6 @@ jobs:
       - name: Build
         run: npm run build
       - name: Publish package
-        run: npm publish --access public --tag ${{ GITHUB_REF }}
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
