@@ -5,6 +5,7 @@
 ### Install
 ```
 npm i @jeremn/form-control-js
+import formControl from '@jeremn/form-control-js'
 ```
 
 ### Usage

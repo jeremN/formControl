@@ -1,1 +1,289 @@
-!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=2)}([function(e,t){e.exports=function(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}},function(e,t,r){var n=r(3),o=r(4),i=r(5);e.exports=function(e){return n(e)||o(e)||i()}},function(e,t,r){e.exports=r(6)},function(e,t){e.exports=function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}},function(e,t){e.exports=function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}},function(e,t){e.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(e,t,r){"use strict";r.r(t);var n={};r.r(n),r.d(n,"fileHasExtension",(function(){return p})),r.d(n,"isSiret",(function(){return m})),r.d(n,"isRequired",(function(){return v})),r.d(n,"isLen",(function(){return g})),r.d(n,"minLen",(function(){return b})),r.d(n,"maxLen",(function(){return h})),r.d(n,"min",(function(){return y})),r.d(n,"max",(function(){return O})),r.d(n,"isNumeric",(function(){return j})),r.d(n,"isInteger",(function(){return P})),r.d(n,"isEqual",(function(){return E})),r.d(n,"isEmail",(function(){return w})),r.d(n,"isPassword",(function(){return A})),r.d(n,"isPhone",(function(){return x})),r.d(n,"isIban",(function(){return C})),r.d(n,"isBic",(function(){return S})),r.d(n,"isUrl",(function(){return M})),r.d(n,"isChecked",(function(){return T})),r.d(n,"radioIsChecked",(function(){return _}));var o=r(1),i=r.n(o),u=r(0),a=r.n(u);function s(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n)}return r}function c(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?s(Object(r),!0).forEach((function(t){a()(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):s(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}var l={isEmail:"Please enter a valid email adress",isPhone:"Please enter a valid phone number",isUrl:"Please enter a valid url",isChecked:"This field must be checked",isIban:"Your IBAN is invalid",isSiret:"Your Siret is invalid",isBic:"Your BIC is invalid",isRequired:"This field is required",isNumeric:"Value must be set to a number",isInteger:"Value must be an integer",isEqual:"Value must match {{cond}} field",isLen:"Value must contain {{cond}} characters",isPassword:"Password shoud contain 6 to 12 characters, numbers, at least one special character(@$_!%*?&), and at least one uppercase character and one lowercase",minLen:"Value is too short, minimum is {{cond}} characters",maxLen:"Value is too long, maximum is {{cond}} characters",min:"Value is too small, minimum is {{cond}}",max:"Value is too big, maximum is {{cond}}",quantity:"Use digits only",radioIsChecked:"You must checked one field at least",fileHasExtension:"Your file is invalid, this extension is not allowed"},f={isName:/\d/,isEmail:/^[a-zA-Z0-9._+-]+@[a-z0-9-]{1,67}\.[a-zA-Z]{2,67}$/,isPhone:/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/,isIban:/^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/,isBic:/([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)/,stringRegexp:/^\s+|<|>|"|\$|&|\/|'|\*|#|@|\\|\.\.|\./,isUrl:/^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|COM|ORG|NET|MIL|EDU|fr|Fr|it|eng|ca)$/,isPassword:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%_*?&])[A-Za-z\d$@$_!%*?&]{6,12}/,msgRegexp:/^\s+$/,isNumeric:/^[0-9]+$/,isSiret:/^[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{3}[ \.\-]?[0-9]{5}$/},d=[".jpg",".jpeg",".gif",".png",".webp"];function p(e,t){return new RegExp("("+t.join("|").replace(/\./g,"\\.")+")$","i").test(e)}function m(e){var t=e.replace(/\s/g,"");if(14!==t.length||isNaN(t))return!1;for(var r=0,n=0,o=0;o<14;o++)r+=n=o%2==0?(n=2*parseInt(t[o],10))>9?n-9:n:parseInt(t[o],10);return r%10!=0}function v(e){return null!=e&&e.length>0}function g(e,t){return e.length===t}function b(e,t){return e.length>=t}function h(e,t){return e.length<=t}function y(e,t){return e>=mi}function O(e,t){return e<=t}function j(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isNumeric;return!isNaN(e)&&t.test(e)}function P(e){return Number.isInteger(e)}function E(e,t){var r=document.querySelector(t);return e===r.value&&r.value.length>0}function w(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isEmail;return t.test(e)}function A(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isPassword;return e.length>0&&t.test(e)}function x(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isPhone;return t.test(e)}function C(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isIban;return t.test(e)}function S(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isBic;return t.test(e)}function M(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:f.isUrl;return t.test(e)}function T(e){return e.checked}function _(e){for(var t=0;t<e.length;t+=1)if(T(e[t]))return!0;return!1}function V(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n)}return r}function I(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?V(Object(r),!0).forEach((function(t){a()(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):V(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}var L={formControlAttr:'[data-form-control="true"]',inputControlAttr:"[data-form-validators]",validationTypeAttr:"validationType",eventTypeAttr:"eventType"};function k(e){var t={};return Object.keys(e).reduce((function(r,n){var o;t[n]=void 0===(o=e[n])||(isNaN(o)?o:+o)}),t),t}function F(e){var t=[];return e.forEach((function(e){var r=function(e){var t=e.dataset.formValidators.split(" ").map((function(e){return e.split("_")}));return k(Object.fromEntries(t))}(e),n=function(e){var t=e.dataset["".concat(L.eventTypeAttr)];return I({},t&&{eventType:t})}(e);t.push(I({},r,{},n,{field:e}))})),t}function D(){var e=document.querySelectorAll("form".concat(L.formControlAttr)),t=[];if(!e)throw Error("FormControl - getAllforms: no forms");return e.forEach((function(e){var r=F(e.querySelectorAll("".concat(L.inputControlAttr))),n=function(e){var t=e.dataset["".concat(L.validationTypeAttr)];return I({},t&&{validate:t})}(e);t.push(I({},n,{form:e,fields:r}))})),t}function N(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n)}return r}function $(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?N(Object(r),!0).forEach((function(t){a()(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):N(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}function q(e){return e instanceof HTMLElement}function z(e){return e&&"[object Function]"==={}.toString.call(e)}function Z(e){return!!e&&(Object.keys(e).length>0&&e.constructor===Object)}function R(e,t){var r=$({},e);return Object.keys(t).forEach((function(n){var o,i;r[n]=Z(e[n])&&Z(t[n])?(o=e[n],i=t[n],$({},o,{},i)):t[n]})),r}r.d(t,"default",(function(){return X})),r.d(t,"getCurrentState",(function(){return ee}));var U={regexp:c({},f),errorsMsg:c({},l),errorClass:"has__error",successClass:"has__success",inputParentClass:".form__group",inputClass:".form__control",fieldMessageClass:".form__message",allowedFileExtensions:d,fieldMessageTemplate:'<div class="form__message"></div>',noValidateAttributes:["field","rule","errorMsg","customRegex","evtType"],validationType:"onSubmit",fieldEvent:"input",timer:3e3,afterValidation:null,customValidators:null};function B(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:document;return q(e)?e:t.querySelector(e)}function H(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:U.fieldMessageClass;return e.querySelector(t)}function Y(e,t){var r=B(e,t),n=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:U.inputParentClass;return e.closest(t)}(r,U.inputParentClass);return{currentInput:r,currentParent:n,currentFieldMessage:H(n,U.fieldMessageClass)}}function G(e,t){var r=e.field,o=e.errorMsg,i=void 0===o?null:o;!function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:U.errorClass,n=Y(e,t),o=(n.currentInput,n.currentParent),i=n.currentFieldMessage;o.classList.remove(r),i&&(i.innerHTML="")}(r,t);var u=B(r,t);Object.keys(e).forEach((function(o){if(!U.noValidateAttributes.includes(o)&&function(e,t,r){if(z(e[t]))return!e[t](r.trim(),e);if(e.customRegex&&z(n[t])){if(!Z(e.customRegex))throw Error("FormControl - runValidator: customRegex properties must be an object");return!n[t](r.trim(),e.customRegex[t])}if(Z(U.customValidators)&&U.customValidators[t]){if(!z(U.customValidators[t]))throw Error("FormControl - customValidators: customValidators[".concat(t,"] must be a function"));return!U.customValidators[t](r.trim(),e)}return"fileHasExtension"===t?!n[t](r.trim(),U.allowedFileExtensions):"boolean"!=typeof e[t]?!n[t](r.trim(),e[t]):!n[t](r.trim())}(e,o,u.value)){var a=function(e,t,r){var n,o=e.dataset["errorMsg".concat((n=t,"string"!=typeof n?"":n.charAt(0).toUpperCase()+n.slice(1)))];return r&&r[t]?r[t]:o||U.errorsMsg[t]}(u,o,i);!function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"",n=arguments.length>3&&void 0!==arguments[3]?arguments[3]:U.errorClass,o=Y(e,t),i=(o.currentInput,o.currentParent),u=o.currentFieldMessage;u||(i.insertAdjacentHTML("beforeend",U.fieldMessageTemplate),u=H(i,U.fieldMessageClass)),i.classList.add(n),u.textContent=r}(r,t,function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"{{cond}}";return e.includes(r)?e.replace(r,t):e}(a,e[o]))}}))}function J(e,t,r,n){if(e.preventDefault(),t.forEach((function(e){return G(e,r)})),!r.querySelectorAll("".concat(U.errorClass)).length&n){if(!z(n))throw Error("FormControl - onSubmitCallback: afterValidation argument is not a function");n(r,t)}}function K(e,t,r){e.addEventListener("submit",(function(n){return J(n,t,e,r)}))}function Q(e,t,r){t.forEach((function(t){var r=e.querySelector(t.field);if(!r)throw Error("FormControl - onFieldsListener: ".concat(t," doesn't exist"));var n=t.evtType?t.evtType:U.fieldEvent;r.addEventListener(n,(function(r){return function(e,t,r){G(t,r)}(0,t,e)}))})),r&&K(e,t,r)}function W(e){e.forEach((function(e){var t=e.form,r=e.fields,n=e.validate,o=void 0===n?null:n,i=e.afterValidation,u=void 0===i?null:i,a=B(t);if(!a)throw Error("FormControl - addEventListeners: ".concat(t," doesn't exist"));var s=o||U.validationType;"onSubmit"===s?K(a,r,u):"onFields"===s&&Q(a,r,u)}))}function X(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];t&&Z(t)&&(U=R(U,t)),W(!e||e&&!Array.isArray(e)||e&&Array.isArray(e)&&!e.length||!e&&r?D():i()(e))}function ee(){return U}}]);
+import * as validators from './validators/validators'
+import defaultState from './utilities/defaultTypes'
+import getAllForms from './utilities/extractDataAttributes'
+import { 
+  updateState, 
+  isFunction, 
+  isHTMLElement, 
+  hasObjectLen,
+  capitalize,
+} from './utilities/utilities'
+
+let state = defaultState()
+
+/** Replace the {{cond}} in a string by a given word
+  * @param {String} str
+  * @param {String} word
+  * @param {String} interpolate
+  * @return {String}
+  */
+function replaceInString (str, word, interpolate = '{{cond}}') {
+  if (str.includes(interpolate)) {
+    return str.replace(interpolate, word)
+  }
+  return str
+}
+
+/** Get DOM element
+  * @param {HTMLElement || className} element
+  * @param {HTMLElement} parent
+  * @return {HTMLElement}
+  */
+function getDomElement (element, parent = document) {
+  return isHTMLElement(element) ? element : parent.querySelector(element)
+}
+
+/** Get closest parent element with a given className
+  * @param {HTMLElement} child
+  * @param {String} className
+  * @return {HTMLElement}
+  */
+function getParentEl (child, className = state.inputParentClass) {
+  return child.closest(className)
+}
+
+/** Get field message
+  * @param {HTMLElement} container
+  * @param {String} className
+  * @return {HTMLElement}
+  */
+function getFieldMessage (container, className = state.fieldMessageClass) {
+  return container.querySelector(className)
+}
+
+/** Get input, inputParent and fieldMsg
+  * @param {className || HTMLElement} field
+  * @param {FormElement} form
+  * @return {Object}
+  */
+function getElements (field, form) {
+  const currentInput = getDomElement(field, form)
+  const currentParent = getParentEl(currentInput, state.inputParentClass)
+  const currentFieldMessage = getFieldMessage(currentParent, state.fieldMessageClass)
+  return { currentInput, currentParent, currentFieldMessage }
+}
+
+/** Show (and eventually append) field message
+  * @param {String || NodeElement} field
+  * @param {NodeElement} form
+  * @param {String} message @optionnal
+  * @param {String} classToAdd @optionnal
+  */
+function showFieldMessage (field, form, message = '', classToAdd = state.errorClass) {
+  let { 
+    currentInput, 
+    currentParent, 
+    currentFieldMessage: fieldMsg 
+  } = getElements(field, form)
+
+  if (!fieldMsg) {
+    currentParent.insertAdjacentHTML('beforeend', state.fieldMessageTemplate)
+    fieldMsg = getFieldMessage(currentParent, state.fieldMessageClass)
+  }
+
+  currentParent.classList.add(classToAdd)
+  fieldMsg.textContent = message
+}
+
+/** Clear field message
+  * @param {String || NodeElement} field
+  * @param {NodeElement} parentForm
+  * @param {String} classToRemove @optionnal
+  */
+function clearFieldMessage (field, parentForm, classToRemove = state.errorClass) {
+  let { currentInput, currentParent, currentFieldMessage } = getElements(field, parentForm)
+  currentParent.classList.remove(classToRemove)
+  
+  if (currentFieldMessage) {
+    currentFieldMessage.innerHTML = ''
+  }
+}
+
+/** Check if the form contain error(s)
+  * @param {className || NodeElement} form
+  * @return {Boolean}
+  */
+function isFormValid (form) {
+  const errors = form.querySelectorAll(`${state.errorClass}`)
+  return !errors.length
+}
+
+/** Run validator
+  * @param {Object} field
+  * @param {String} attribute
+  * @param {value} value
+  * @return {Boolean}
+  */
+function runValidator (field, attribute, value) {
+  if (isFunction(field[attribute])) {
+    return !field[attribute](value.trim(), field)
+  }
+
+  if (field.customRegex && isFunction(validators[attribute])) {
+    if (!hasObjectLen(field.customRegex)) {
+      throw Error('FormControl - runValidator: customRegex properties must be an object')
+    }
+    return !validators[attribute](value.trim(), field.customRegex[attribute])
+  }
+
+  if (hasObjectLen(state.customValidators) && state.customValidators[attribute]){
+    if (!isFunction(state.customValidators[attribute])) {
+      throw Error(`FormControl - customValidators: customValidators[${attribute}] must be a function`)
+    }
+    return !state.customValidators[attribute](value.trim(), field)
+  }
+
+  if (attribute === 'fileHasExtension') {
+    return !validators[attribute](value.trim(), state.allowedFileExtensions)
+  }
+
+  if (typeof field[attribute] !== 'boolean') {
+    return !validators[attribute](value.trim(), field[attribute])
+  }
+
+  return !validators[attribute](value.trim())
+}
+
+/** Get error message
+  * @param {HTMLElement} input
+  * @param {String} attribute
+  * @param {Object} errorsOptions
+  * @return {String}
+  */
+function getErrorMessage (input, attribute, errorsOptions) {
+  const { [`errorMsg${capitalize(attribute)}`]: customError } = input.dataset
+
+  if (errorsOptions && errorsOptions[attribute]) {
+    return errorsOptions[attribute]
+  }
+
+  if (customError) {
+    return customError
+  }
+
+  return state.errorsMsg[attribute]
+}
+
+/** Validate field
+  * @param {Object} fieldToValidate
+  * @param {className || NodeElement} parentForm
+  */
+function validateField (fieldToValidate, parentForm) {
+  let formHasError = false
+  let { field, errorMsg = null } = fieldToValidate
+  clearFieldMessage(field, parentForm)
+  const input = getDomElement(field, parentForm)
+  
+  Object.keys(fieldToValidate).forEach((attribute) => {
+    if (!state.noValidateAttributes.includes(attribute)) {
+      formHasError = runValidator(fieldToValidate, attribute, input.value)
+
+      if (formHasError) {
+        const message = getErrorMessage(input, attribute, errorMsg)
+        showFieldMessage(field, parentForm, replaceInString(message, fieldToValidate[attribute]))
+      }
+    }
+  })
+}
+
+/** onSubmit callback for onSubmitListener method
+  * @param {Event} evt
+  * @param {Object} field
+  * @param {className || NodeElement} submittedForm
+  */
+function onFieldsCallback (evt, field, submittedForm) {
+  validateField(field, submittedForm)
+}
+
+/** onSubmit callback for onSubmitListener method
+  * @param {Event} evt
+  * @param {Array} fields
+  * @param {className || NodeElement} submittedForm
+  * @param {Null || Function} callback
+  */
+function onSubmitCallback (evt, fields, submittedForm, callback) {
+  evt.preventDefault()
+  fields.forEach(field => validateField(field, submittedForm))
+
+  if (isFormValid(submittedForm) & callback) {
+    if (!isFunction(callback)) {
+      throw Error('FormControl - onSubmitCallback: afterValidation argument is not a function')
+    }
+    callback(submittedForm, fields)
+  }
+}
+
+/** Add 'submit' event listener
+  * @param {HTMLElement} currentForm
+  * @param {Array} fields
+  * @param {Null || Function} callback
+  */
+function onSubmitListener (currentForm, fields, callback) {
+  currentForm.addEventListener('submit', evt => onSubmitCallback(evt, fields, currentForm, callback))
+}
+
+/** Add custom event listener (@default to 'input') event listener
+  * @param {HTMLElement} currentForm
+  * @param {Array} fields
+  * @param {Null || Function} callback
+  */
+function onFieldsListener (currentForm, fields, callback) {
+  fields.forEach((field) => {
+    const fieldEl = currentForm.querySelector(field.field)
+    if (!fieldEl) {
+      throw Error(`FormControl - onFieldsListener: ${field} doesn't exist`)
+    }
+    const evtType = field.evtType ? field.evtType : state.fieldEvent
+    fieldEl.addEventListener(evtType, (evt) => onFieldsCallback(evt, field, currentForm))
+  })
+
+  if (callback) {
+    onSubmitListener(currentForm, fields, callback)
+  }
+}
+
+/** Init event listeners
+  * @param {Array} forms
+  */
+function addEventListeners (forms) {
+  forms.forEach(({ form, fields, validate = null, afterValidation = null}) => {
+    const currentForm = getDomElement(form)
+    if (!currentForm) {
+      throw Error(`FormControl - addEventListeners: ${form} doesn't exist`)
+    }
+    const validationType = validate ? validate : state.validationType
+
+    if (validationType === 'onSubmit') {
+      onSubmitListener(currentForm, fields, afterValidation)
+    } else if (validationType === 'onFields') {
+      onFieldsListener(currentForm, fields, afterValidation)
+    }
+  })
+}
+
+export function getCurrentState () {
+  return state
+}
+
+/** Init FormControl
+  * @param {Array} - forms
+  * @params {Object} - config
+  */
+export default function formControl (forms = null, config = null, useDateAttr = true) {
+  let formsArray = null
+
+  if (config && hasObjectLen(config)) {
+    state = updateState(state, config)
+  }
+
+  if (!forms 
+    || forms && !Array.isArray(forms) 
+    || forms && Array.isArray(forms) && !forms.length
+    || !forms && useDateAttr) {
+    formsArray = getAllForms()
+  } else {
+    formsArray = [...forms]
+  }
+
+  addEventListeners(formsArray)
+}

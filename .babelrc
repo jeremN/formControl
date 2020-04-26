@@ -1,13 +1,6 @@
 {
   "presets": [
-    [
-      "@babel/env", 
-      {
-        "targets": {
-          "esmodules": true
-        }
-      }
-    ]
+    ["@babel/env"]
   ],
   "plugins": [
     "syntax-dynamic-import",

@@ -1,12 +1,14 @@
 const webpack = require('webpack')
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const PUBLIC_PATH = path.resolve(__dirname, 'dist')
 
 module.exports = {
-  entry: ['./src/scripts/form-control.js'],
+  entry: './src/scripts/form-control.js',
   output: {
-    filename: 'form-control.js',
-    path: PUBLIC_PATH
+    path: PUBLIC_PATH,
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -15,11 +17,27 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
         }
       },
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: './src/scripts/validators/',
+        to: './validators/',
+        ignore: ['*.test.js']
+      },
+      {
+        from: './src/scripts/utilities/',
+        to: './utilities/',
+        ignore: ['*.test.js']
+      },
+      {
+        from: './src/scripts/form-control.js',
+        ignore: ['*.test.js']
+      }
+    ])
+  ]
 }

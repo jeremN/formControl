@@ -261,6 +261,10 @@ function addEventListeners (forms) {
   })
 }
 
+export function getCurrentState () {
+  return state
+}
+
 /** Init FormControl
   * @param {Array} - forms
   * @params {Object} - config
@@ -282,8 +286,4 @@ export default function formControl (forms = null, config = null, useDateAttr = 
   }
 
   addEventListeners(formsArray)
-}
-
-export function getCurrentState () {
-  return state
 }
