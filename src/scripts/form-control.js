@@ -93,7 +93,7 @@ function showFieldMessage (field, form, message = '', classToAdd = state.errorCl
     currentParent, 
     currentFieldMessage: fieldMsg 
   } = getElements(field, form)
-  const hasError = className === this.cfg.errorClass
+  const hasError = className === state.errorClass
 
   if (!fieldMsg) {
     currentParent.insertAdjacentHTML('beforeend', state.fieldMessageTemplate)
