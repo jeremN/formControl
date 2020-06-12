@@ -16,7 +16,7 @@ let state = defaultState()
   * @param {Boolean} hasError
   */
 function setInputAriaAttributes (input, hasError = false) {
-  const field = isHTMLElement(input) ? input : document.querySelector(input.field)
+  const field = isHTMLElement(input) ? input : document.querySelector(input)
   field.setAttribute('aria-invalid', hasError)
 }
 
@@ -93,7 +93,7 @@ function showFieldMessage (field, form, message = '', classToAdd = state.errorCl
     currentParent, 
     currentFieldMessage: fieldMsg 
   } = getElements(field, form)
-  const hasError = className === state.errorClass
+  const hasError = classToAdd === state.errorClass
 
   if (!fieldMsg) {
     currentParent.insertAdjacentHTML('beforeend', state.fieldMessageTemplate)
@@ -101,7 +101,7 @@ function showFieldMessage (field, form, message = '', classToAdd = state.errorCl
   }
 
   currentParent.classList.add(classToAdd)
-  setInputAriaAttributes(field, hasError)
+  setInputAriaAttributes(currentInput, hasError)
   setFieldMsgAriaAttributes(fieldMsg, hasError)
   fieldMsg.textContent = message
 }
@@ -126,6 +126,9 @@ function clearFieldMessage (field, parentForm, classToRemove = state.errorClass)
   */
 function isFormValid (form) {
   const errors = form.querySelectorAll(`${state.errorClass}`)
+  if (errors.length) {
+    errors[0].querySelector(`${state.inputClass}`).focus()
+  }
   return !errors.length
 }
 
@@ -136,7 +139,6 @@ function isFormValid (form) {
   * @return {Boolean}
   */
 function runValidator (field, attribute, value) {
-  setInputAriaAttributes(field)
 
   if (isFunction(field[attribute])) {
     return !field[attribute](value.trim(), field)
@@ -215,7 +217,9 @@ function validateField (fieldToValidate, parentForm) {
   * @param {className || NodeElement} submittedForm
   */
 function onFieldsCallback (evt, field, submittedForm) {
-  validateField(field, submittedForm)
+  if (!state.noValidateKeys.includes(evt.key)) {
+    validateField(field, submittedForm)
+  }
 }
 
 /** onSubmit callback for onSubmitListener method

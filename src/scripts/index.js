@@ -1,6 +1,6 @@
 import '../sass/style.scss'
 
-import formControl from 'form-control';
+import formControl from './form-control';
 
 formControl()
 
