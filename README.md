@@ -368,6 +368,7 @@ let validation = formControl(null, {
 | `allowedFileExtensions` | Array | Allowed file extension used by validators for input[type="file"] | `['.jpg', '.jpeg', '.gif', '.png', '.webp']` |
 | `fieldMessageTemplate` | Template string | Error field template used to display error/message message | `<div class="form__message"></div>` | 
 | `noValidateAttributes` | Array | This attributes will not be used by runValidators method | `['field', 'rule']` 
+| `noValidateKeys` | Array | This keys will not fire the runValidator callback when user use their keyboard | `['Tab', 'Shift']` 
 | `validationType` | Object | Type of validation used by FormControl | `onSubmit` 
 | `fieldEvent` | Object | Default field event for 'onFields' validation listener | `input` 
 | `timer` | Object | Debounce timer for field type validation | `null` 

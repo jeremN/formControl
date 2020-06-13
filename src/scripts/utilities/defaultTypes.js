@@ -70,6 +70,7 @@ export default function defaultState () {
     allowedFileExtensions: DEFAULT_FILE_EXT,
     fieldMessageTemplate: `<div class="form__message"></div>`,
     noValidateAttributes: ['field', 'rule', 'errorMsg', 'customRegex', 'evtType'],
+    noValidateKeys: ['Tab', 'Shift'],
     validationType: 'onSubmit',
     fieldEvent: 'input',
     timer: 3000,

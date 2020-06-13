@@ -9,7 +9,7 @@ describe('FormControl should works if i use data-attr', () => {
         data-form-control="true"
         data-validation-type="onSubmit">
         <div class="form__group js__test-custom-validator">
-          <label for="name2">Name</label>
+          <label for="text2">Name</label>
           <input 
             id="text2" 
             class="form__field" 
@@ -144,7 +144,7 @@ describe('FormControl should works if i use data-attr', () => {
     const customState = {
       customValidators: {
         isNotEqualTwo: (value) => {
-          return value != "2"
+          return value !== "2"
         }
       }
     }
@@ -166,6 +166,17 @@ describe('FormControl should works if i use data-attr', () => {
   it('should show an error message if validators return false', () => {
     const testErrorClass = document.querySelector('.js__test-message')
     expect(testErrorClass.classList.contains('has__error')).toBe(true)
+  })
+
+  it('should contains aria-invalid equal to true', () => {
+    const testField = document.querySelector('#name2')
+    expect(testField.getAttribute('aria-invalid')).toBe('true')
+  })
+
+  it('should add aria-live and role attribute to the error message field', () => {
+    const testErrorClass = document.querySelector('.js__test-message > .form__message')
+    expect(testErrorClass.getAttribute('role')).toBe('alert')
+    expect(testErrorClass.getAttribute('aria-live')).toBe('assertive')
   })
 
   it('should return my custom error message if i use data-error-msg-my-attribute', () => {

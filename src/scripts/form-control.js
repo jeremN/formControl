@@ -11,6 +11,24 @@ import {
 
 let state = defaultState()
 
+/** Toggle aria-invalid attribute to field with an error 
+  * @param {HTMLElement || className} input
+  * @param {Boolean} hasError
+  */
+function setInputAriaAttributes (input, hasError = false) {
+  const field = isHTMLElement(input) ? input : document.querySelector(input)
+  field.setAttribute('aria-invalid', hasError)
+}
+
+/** Set role and aria-live attribute to field message 
+  * @param {HTMLElement} fieldMsg
+  * @param {Boolean} isErrorMsg
+  */
+function setFieldMsgAriaAttributes (fieldMsg, isErrorMsg = false) {
+  fieldMsg.setAttribute('role', isErrorMsg ? 'alert' : 'status')
+  fieldMsg.setAttribute('aria-live', isErrorMsg ? 'assertive' : 'polite')
+}
+
 /** Replace the {{cond}} in a string by a given word
   * @param {String} str
   * @param {String} word
@@ -75,6 +93,7 @@ function showFieldMessage (field, form, message = '', classToAdd = state.errorCl
     currentParent, 
     currentFieldMessage: fieldMsg 
   } = getElements(field, form)
+  const hasError = classToAdd === state.errorClass
 
   if (!fieldMsg) {
     currentParent.insertAdjacentHTML('beforeend', state.fieldMessageTemplate)
@@ -82,6 +101,8 @@ function showFieldMessage (field, form, message = '', classToAdd = state.errorCl
   }
 
   currentParent.classList.add(classToAdd)
+  setInputAriaAttributes(currentInput, hasError)
+  setFieldMsgAriaAttributes(fieldMsg, hasError)
   fieldMsg.textContent = message
 }
 
@@ -105,6 +126,9 @@ function clearFieldMessage (field, parentForm, classToRemove = state.errorClass)
   */
 function isFormValid (form) {
   const errors = form.querySelectorAll(`${state.errorClass}`)
+  if (errors.length) {
+    errors[0].querySelector(`${state.inputClass}`).focus()
+  }
   return !errors.length
 }
 
@@ -115,6 +139,7 @@ function isFormValid (form) {
   * @return {Boolean}
   */
 function runValidator (field, attribute, value) {
+
   if (isFunction(field[attribute])) {
     return !field[attribute](value.trim(), field)
   }
@@ -192,7 +217,9 @@ function validateField (fieldToValidate, parentForm) {
   * @param {className || NodeElement} submittedForm
   */
 function onFieldsCallback (evt, field, submittedForm) {
-  validateField(field, submittedForm)
+  if (!state.noValidateKeys.includes(evt.key)) {
+    validateField(field, submittedForm)
+  }
 }
 
 /** onSubmit callback for onSubmitListener method
