@@ -40,7 +40,6 @@ const DEFAULT_FILE_EXT = ['.jpg', '.jpeg', '.gif', '.png', '.webp']
 const DEFAULT_ERROR_CLASS = 'has__error'
 const DEFAULT_SUCCESS_CLASS = 'has__success'
 const DEFAULT_FIELD_MSG_CLASS = '.form__message'
-const DEFAULT_FIELD_MSG_WORDING_CLASS = '.form__message-wording'
 const DEFAULT_FIELD_CLASS = '.form__control'
 const DEFAULT_FIELD_PARENT_CLASS = '.form__group'
 

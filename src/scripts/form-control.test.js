@@ -134,6 +134,25 @@ describe('FormControl should works if i use data-attr', () => {
             data-form-validators="isChecked"/>
           <div class="form__message"></div>
         </div>  
+        <fieldset class="form__group js__testRadios">
+          <legend>Multiple radio inputs</legend>
+          <div style="display: flex;">
+            <input data-form-validators="radioIsChecked" class="form__field" type="radio" name="test-1" id="test-1">
+            <label for="test-1">test 1</label>
+          </div>
+          <div style="display: flex;">
+            <input class="form__field" type="radio" name="test-1" id="test-2">
+            <label for="test-2">test 2</label>
+          </div>
+          <div style="display: flex;">
+            <input class="form__field" type="radio" name="test-1" id="test-3">
+            <label for="test-3">test 3</label>
+          </div>
+          <div style="display: flex;">
+            <input class="form__field" type="radio" name="test-1" id="test-4">
+            <label for="test-4">test 4</label>
+          </div>
+        </fieldset>        
         <div class="form__group form__group--row">
           <button type="submit">Send</button>
           <button type="reset">Reset</button>
@@ -191,6 +210,13 @@ describe('FormControl should works if i use data-attr', () => {
     expect(currentState.customValidators.isNotEqualTwo).not.toBeUndefined()
     expect(currentState.customValidators).not.toBeNull()
     expect(customValidator.textContent).toMatch('Field should not be equal to two')
+  })
+
+  it('should validate a fieldset with multiple radio inputs', () => {
+    const testErrorClass = document.querySelector('.js__testRadios')
+    expect(testErrorClass.classList.contains('has__error')).toBe(true)
+    testErrorClass.querySelector('#test-2').setAttribute('checked', true)
+    expect(testErrorClass.classList.contains('has-error')).toBe(false)
   })
 })
 
@@ -315,7 +341,7 @@ describe('FormControl should works if i use forms arguments', () => {
           </select>
           <div class="form__message"></div>
         </div> 
-        <div class="form__group">
+        <div class="form__group js__testChecked">
           <label for="checking2">Checked</label>
           <input 
             id="checking2" 
@@ -414,5 +440,12 @@ describe('FormControl should works if i use forms arguments', () => {
     const msg = customFunc.querySelector('.form__message')
     expect(customFunc.classList.contains('has__error')).toBe(true)
     expect(msg.textContent).toMatch('Not the expected string')
+  })
+
+  it('should validate a checkbox input', () => {
+    const test = document.querySelector('.js__testChecked')
+    expect(test.classList.contains('has__error')).toBe(true)
+    test.querySelector('#checking2').setAttribute('checked', true)
+    expect(test.classList.contains('has-error')).toBe(false)
   })
 })
