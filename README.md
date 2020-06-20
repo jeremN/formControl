@@ -452,9 +452,3 @@ let validation = formControl(null, {
 | quantity | 'Use digits only' |
 | radioIsChecked | 'You must checked one field at least' |
 | fileHasExtension | 'Your file is invalid, this extension is not allowed' |
-
-
-### TODO:
- - support multiple radio input => 1/2
- - complete README
- - accessibility
