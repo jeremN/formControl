@@ -125,9 +125,9 @@ function clearFieldMessage (field, parentForm, classToRemove = state.errorClass)
   * @return {Boolean}
   */
 function isFormValid (form) {
-  const errors = form.querySelectorAll(`${state.errorClass}`)
+  const errors = form.querySelectorAll(state.errorClass)
   if (errors.length) {
-    errors[0].querySelector(`${state.inputClass}`).focus()
+    errors[0].querySelector(state.inputClass).focus()
   }
   return !errors.length
 }
@@ -139,11 +139,12 @@ function isFormValid (form) {
   * @return {Boolean}
   */
 function runValidator (field, attribute, value) {
-
+  // if a custom validator or validator function is provided
   if (isFunction(field[attribute])) {
     return !field[attribute](value.trim(), field)
   }
 
+  // if custom validator AND custom regex are provided
   if (field.customRegex && isFunction(validators[attribute])) {
     if (!hasObjectLen(field.customRegex)) {
       throw Error('FormControl - runValidator: customRegex properties must be an object')
@@ -151,6 +152,7 @@ function runValidator (field, attribute, value) {
     return !validators[attribute](value.trim(), field.customRegex[attribute])
   }
 
+  // if custom validators is provided in state AND this validators exist
   if (hasObjectLen(state.customValidators) && state.customValidators[attribute]){
     if (!isFunction(state.customValidators[attribute])) {
       throw Error(`FormControl - customValidators: customValidators[${attribute}] must be a function`)
@@ -158,12 +160,26 @@ function runValidator (field, attribute, value) {
     return !state.customValidators[attribute](value.trim(), field)
   }
 
+  // to validate file extension
   if (attribute === 'fileHasExtension') {
     return !validators[attribute](value.trim(), state.allowedFileExtensions)
   }
 
+  // if validator attribute is not a boolean (like isEqual validator)
   if (typeof field[attribute] !== 'boolean') {
     return !validators[attribute](value.trim(), field[attribute])
+  }
+
+  // to validate a list of input radio and one must be checked
+  if (attribute === 'radioIsChecked') {
+    const { name } = field.field
+    const inputsToValidate = [...getParentEl(field.field).querySelectorAll(`input[name="${name}"]`)]
+    return !validators[attribute](inputsToValidate)
+  }
+
+  // to validate a checkbox input or a single radio
+  if (attribute === 'isChecked') {
+    return !validators[attribute](field.field)
   }
 
   return !validators[attribute](value.trim())
